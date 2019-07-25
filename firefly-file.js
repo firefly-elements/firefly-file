@@ -3,6 +3,11 @@ import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-fab/paper-fab.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import './firefly-icons/firefly-icons.js'
+import './polymerfire/firebase-auth.js'
+import './polymerfire/firebase-storage-multiupload.js'
+import './polymerfire/firebase-storage-upload-task.js'
+
+
 /**
  * `firefly-file` This component is responsible for loading a single file into the
  * specified file storage location. To add it to your page, set the 'app-name' and
@@ -49,6 +54,7 @@ class FireflyFile extends PolymerElement {
       <paper-fab icon="aspen:upload"></paper-fab><label>[[label]]</label>
 
       <firebase-auth app-name="[[appName]]"></firebase-auth>
+      
       <firebase-storage-multiupload
         app-name="[[appName]]"
         path="[[path]]"
