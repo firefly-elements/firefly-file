@@ -1,9 +1,8 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement,html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-fab/paper-fab.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-import './firefly-icons/firefly-icons';
-
+import './firefly-icons/firefly-icons.js'
 /**
  * `firefly-file` This component is responsible for loading a single file into the
  * specified file storage location. To add it to your page, set the 'app-name' and

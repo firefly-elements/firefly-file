@@ -1,4 +1,4 @@
-const $_documentContainer = document.createElement('template');
+export const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<iron-iconset-svg name="aspen" size="24">
 <svg><defs>
