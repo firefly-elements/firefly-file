@@ -1,11 +1,15 @@
 import { PolymerElement,html } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-fab/paper-fab.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+
+import '@firefly-elements/polymerfire/firebase-auth';
+import '@firefly-elements/polymerfire/firebase-storage-multiupload';
+import '@firefly-elements/polymerfire/firebase-storage-upload-task';
+
 import './firefly-icons/firefly-icons.js'
-import './polymerfire/firebase-auth.js'
-import './polymerfire/firebase-storage-multiupload.js'
-import './polymerfire/firebase-storage-upload-task.js'
+
 
 
 /**

@@ -9,6 +9,7 @@
   },
   "main": "firefly-file.js",
   "dependencies": {
+    "@firefly-elements/polymerfire": "^0.5.0",
     "@polymer/app-storage": "^3.0.2",
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/paper-fab": "^3.0.0",
@@ -21,7 +22,7 @@
     "wct-browser-legacy": "^1.0.1",
     "@webcomponents/webcomponentsjs": "^2.0.0"
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "directories": {
     "test": "test"
   },
