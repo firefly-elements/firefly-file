@@ -217,40 +217,40 @@ class FireflyFile extends PolymerElement {
     storage.ref
       .child(file.name)
       .put(file)
-      .then(
-        function(snapshot) {
-          console.log(snapshot);
-          if (snapshot.state == 'success') {
-            let msg = '';
-            try {
-              this.set('downloadUrl', snapshot.metadata.downloadURLs[0]);
-              this.dispatchEvent(
-                new CustomEvent('file-upload-complete', {
-                  bubbles: true,
-                  composed: true,
-                  detail: {
-                    downloadUrl: snapshot.metadata.downloadURLs[0]
-                  }
-                })
-              );
-              msg = 'Icon updated';
-            } catch (error) {
-              console.log(error);
-              msg = 'An error occurred while updating the icon.';
-            }
+      .then(snapshot => {
+        if (snapshot.state == 'success') {
+          return snapshot.ref.getDownloadURL(); // Will return a promise with the download link
+        }
+      })
+      .then(downloadURL => {
+        let msg = '';
+        try {
+          this.set('downloadUrl', downloadURL);
+          this.dispatchEvent(
+            new CustomEvent('file-upload-complete', {
+              bubbles: true,
+              composed: true,
+              detail: {
+                downloadUrl: downloadURL
+              }
+            })
+          );
+          msg = 'Icon updated';
+        } catch (error) {
+          console.error(error);
+          msg = 'An error occurred while updating the icon.';
+        }
 
-            this.dispatchEvent(
-              new CustomEvent('show-msg', {
-                bubbles: true,
-                composed: true,
-                detail: {
-                  msg: msg
-                }
-              })
-            );
-          }
-        }.bind(this)
-      );
+        this.dispatchEvent(
+          new CustomEvent('show-msg', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              msg: msg
+            }
+          })
+        );
+      });
   }
 }
 
