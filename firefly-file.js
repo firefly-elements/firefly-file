@@ -82,40 +82,40 @@ class FireflyFile extends PolymerElement {
       /** The name of the application. */
       appName: {
         type: String,
-        value: ""
+        value: "",
       },
       /** The path to the storage location. i.e. '/path/to/directory' used to upload the file to a specific directory*/
       path: {
         type: String,
-        value: ""
+        value: "",
       },
       files: {
         type: Array,
         value: [],
-        notify: true
+        notify: true,
       },
       uploadTasks: {
         type: Array,
         value: [],
-        notify: true
+        notify: true,
       },
       /** The completely qualified download URL used to retrieve the file. */
       downloadUrl: {
         type: String,
-        value: ""
+        value: "",
       },
       label: {
         type: String,
-        value: "Drop file on icon to upload"
+        value: "Drop file on icon to upload",
       },
       state: {
         type: String,
-        value: ""
+        value: "",
       },
       tempDownload: {
         type: String,
-        value: ""
-      }
+        value: "",
+      },
     };
   }
   /**
@@ -131,7 +131,7 @@ class FireflyFile extends PolymerElement {
    */
   ready() {
     super.ready();
-    afterNextRender(this, function() {});
+    afterNextRender(this, function () {});
   }
   /**
    * Called every time the element is inserted into the DOM. Useful for
@@ -141,9 +141,9 @@ class FireflyFile extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     let icon = this.shadowRoot.querySelector("paper-fab");
-    icon.addEventListener("drop", e => this.__fileSelected(e));
-    icon.addEventListener("dragenter", e => this.__cancelHandler(e));
-    icon.addEventListener("dragover", e => this.__cancelHandler(e));
+    icon.addEventListener("drop", (e) => this.__fileSelected(e));
+    icon.addEventListener("dragenter", (e) => this.__cancelHandler(e));
+    icon.addEventListener("dragover", (e) => this.__cancelHandler(e));
   }
   /**
    * Called every time the element is removed from the DOM. Useful for
@@ -152,9 +152,9 @@ class FireflyFile extends PolymerElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     let icon = this.shadowRoot.querySelector("paper-fab");
-    icon.removeEventListener("drop", e => this.__fileSelected(e));
-    icon.removeEventListener("dragenter", e => this.__cancelHandler(e));
-    icon.removeEventListener("dragover", e => this.__cancelHandler(e));
+    icon.removeEventListener("drop", (e) => this.__fileSelected(e));
+    icon.removeEventListener("dragenter", (e) => this.__cancelHandler(e));
+    icon.removeEventListener("dragover", (e) => this.__cancelHandler(e));
   }
   __cancelHandler(e) {
     e.preventDefault();
@@ -170,8 +170,8 @@ class FireflyFile extends PolymerElement {
           bubbles: true,
           composed: true,
           detail: {
-            msg: "Upload complete"
-          }
+            msg: "Upload complete",
+          },
         })
       );
     }
@@ -195,14 +195,14 @@ class FireflyFile extends PolymerElement {
       "firebase-storage-multiupload"
     );
     storage.ref
-      .child(file.name)
+      .child(file.name + "-" + new Date().toISOString())
       .put(file)
-      .then(snapshot => {
+      .then((snapshot) => {
         if (snapshot.state == "success") {
           return snapshot.ref.getDownloadURL(); // Will return a promise with the download link
         }
       })
-      .then(downloadURL => {
+      .then((downloadURL) => {
         let msg = "";
         try {
           this.set("downloadUrl", downloadURL);
@@ -211,8 +211,8 @@ class FireflyFile extends PolymerElement {
               bubbles: true,
               composed: true,
               detail: {
-                downloadUrl: downloadURL
-              }
+                downloadUrl: downloadURL,
+              },
             })
           );
           msg = "Icon updated";
@@ -225,8 +225,8 @@ class FireflyFile extends PolymerElement {
             bubbles: true,
             composed: true,
             detail: {
-              msg: msg
-            }
+              msg: msg,
+            },
           })
         );
       });
